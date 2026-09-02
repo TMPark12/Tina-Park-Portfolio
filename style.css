@@ -54,18 +54,9 @@ section {
 }
 
 #fun-facts {
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
-        url('Images/FB_IMG_1680773423468.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #F5F0F8;
 }
 
-#fun-facts h3,
-#fun-facts p {
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
-}
 
 #philosophy {
     background-color: #E8E8E8;
