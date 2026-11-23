@@ -10,6 +10,14 @@
     <h1>Tina Park</h1>
     <img src="Images/WIN_20251213_03_44_20_Pro.jpg" alt="Tina Park">
     <h2>Portfolio</h2>
+
+    <nav class="section-nav" aria-label="Portfolio sections">
+        <a href="#biography">Biography</a>
+        <a href="#philosophy">My Philosophy</a>
+        <a href="#education">Education</a>
+        <a href="#fun-facts">Fun Facts</a>
+        <a href="#tiktok">TikTok Creator</a>
+    </nav>
     
     <section id="biography">
         <h3>Biography</h3>
@@ -23,11 +31,22 @@
 
     <section id="education">
         <h3>Education & Life Purpose</h3>
-        <p>At 53, I'm currently a student at Arizona State University, pursuing a degree in Human Services Engineering (User Experience)—a lifelong goal I'm finally fulfilling. This journey is deeply personal: I'm pursuing this degree in honor of my mom's courageous battle with ovarian cancer and my own health journey with endometriosis. Surviving these health challenges taught me that life is precious and meant to be lived fully. I've learned that you truly only live once, and there's no better time than now to pursue dreams, make a difference in others' lives through UX design, and show my family—especially my granddaughters—that it's never too late to chase your goals and reinvent yourself.</p>
+        <p>I'm pursuing a degree in Human Services Engineering (User Experience) at Arizona State University—a lifelong goal I'm finally fulfilling.</p>
+        <p>This journey is deeply personal. I'm pursuing my degree in honor of my mom's courageous battle with ovarian cancer and my own health journey with endometriosis. These experiences taught me that life is precious and meant to be lived fully. Through UX design, I hope to make a difference in others' lives and show my family—especially my granddaughters—that it's never too late to chase your goals and reinvent yourself.</p>
+        <h4>Education</h4>
+        <ul class="education-list">
+            <li>12/2025 ASU (Online), Tempe, AZ — Studying HSE (UX)</li>
+            <li>1991 Cypress High School, Seaside, CA — General Studies, graduated 1991</li>
+            <li>9/1987-2/1991 Santa Catalina High School, Monterey, CA — General Studies</li>
+        </ul>
+        <h4>Certificates</h4>
+        <ul class="education-list">
+            <li>Oct 2026 The Career Accelerator — Web Development Certification (Credential ID: 197350320)</li>
+        </ul>
     </section>
 
     <section id="fun-facts">
-        <h3>Little Known Facts About Me</h3>
+        <h3>Fun Facts</h3>
         <p><strong>Music Background:</strong> I'm a classically trained musician who primarily plays violin, but I'm also proficient on viola, clarinet, alto clarinet, and timpani. As an expert sight reader, I was invited in 7th grade to perform with the 8th grade quartet—and I was the only musician that day to perform without a single mistake. This musical achievement earned me a scholarship to Santa Catalina School, a prestigious all-girls private academy.</p>
         
         <p><strong>Career & Expertise:</strong> Four years after recovering from multiple surgeries during the COVID-19 pandemic, I returned to the workforce with renewed determination. During my career in the bearings manufacturing industry, I became one of only three women in the company's history to master the setup and operation of precision machines handling components over 8 inches with ultra-high precision requirements. This accomplishment reflects not only my technical skill and dedication to breaking barriers in a traditionally male-dominated field, but also my resilience and ability to return stronger after facing significant health challenges.</p>
@@ -40,5 +59,27 @@
         <p>I'm also a TikTok creator sharing my journey, perspectives, and daily life with my community. Follow me for authentic content and real conversations about life, growth, and everything in between!</p>
         <a href="https://www.tiktok.com/@crankynana626" target="_blank" class="tiktok-button">Follow @crankynana626 on TikTok</a>
     </section>
+    <script>
+        const sectionLinks = document.querySelectorAll(".section-nav a");
+        const sections = document.querySelectorAll("section");
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                sectionLinks.forEach((link) => {
+                    const isActive = link.getAttribute("href") === `#${entry.target.id}`;
+                    link.classList.toggle("is-active", isActive);
+                    if (isActive) link.setAttribute("aria-current", "location");
+                    else link.removeAttribute("aria-current");
+                });
+                sections.forEach((section) => {
+                    section.classList.toggle("is-active", section === entry.target);
+                });
+            });
+        }, { rootMargin: "-20% 0px -65% 0px" });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+    </script>
 </body>
 </html>

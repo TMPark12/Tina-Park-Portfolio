@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -11,6 +15,7 @@ body {
     color: #2C2C2C;
     text-align: center;
     padding: 20px;
+    padding-bottom: 60px;
 }
 
 h1 {
@@ -26,6 +31,12 @@ h2, h3 {
     color: #003D82;
     font-weight: 800;
     margin: 20px 0 10px 0;
+}
+
+h4 {
+    color: #003D82;
+    font-weight: 800;
+    margin: 20px 0 10px;
 }
 
 img {
@@ -44,6 +55,15 @@ p {
     color: #2C2C2C;
 }
 
+.education-list {
+    list-style: none;
+    color: #2C2C2C;
+}
+
+.education-list li + li {
+    margin-top: 8px;
+}
+
 section {
     background-color: #F5F0F8;
     padding: 20px;
@@ -51,17 +71,68 @@ section {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 800px;
+    scroll-margin-top: 20px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #fun-facts {
-    background-color: #F5F0F8;
+    background-color: #D6EAF8;
+}
+
+#fun-facts:hover,
+#fun-facts.is-active {
+    background-color: #E8E8E8;
+}
+
+.section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.section-nav a {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid #003D82;
+    border-radius: 25px;
+    color: #003D82;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.section-nav a:hover,
+.section-nav a:focus-visible,
+.section-nav a.is-active {
+    background-color: #003D82;
+    color: #F5F0F8;
+    transform: translateY(-2px);
+}
+
+section.is-active {
+    background-color: #E8E8E8;
+    box-shadow: 0 0 0 3px #003D82, 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    section,
+    .section-nav a {
+        transition: none;
+    }
 }
 
 
 #philosophy {
-    background-color: #E8E8E8;
+    background-color: #D6EAF8;
     background-image: 
-        linear-gradient(90deg, rgba(245, 240, 248, 0.5), rgba(245, 240, 248, 0.9)),
+        linear-gradient(90deg, rgba(214, 234, 248, 0.5), rgba(214, 234, 248, 0.9)),
         url('Images/Rosie-Riveter-Poster-2_1024x1024.jpg');
     background-size: 200px auto;
     background-position: left center;
@@ -70,22 +141,45 @@ section {
     padding-left: 210px;
 }
 
+#philosophy:hover,
+#philosophy.is-active {
+    background-color: #E8E8E8;
+    background-image:
+        linear-gradient(90deg, rgba(232, 232, 232, 0.5), rgba(232, 232, 232, 0.9)),
+        url('Images/Rosie-Riveter-Poster-2_1024x1024.jpg');
+}
+
 #philosophy h3 {
     text-align: center;
     padding-left: 0;
 }
 
 #tiktok {
-    background-image: 
-        linear-gradient(90deg, rgba(245, 240, 248, 0.7), rgba(245, 240, 248, 0.7)),
-        url('Images/CN top.jpg');
-    background-size: 300px auto;
-    background-position: left 20%;
-    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-left: 320px;
+    padding-left: clamp(140px, 40%, 320px);
+}
+
+#tiktok::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: clamp(120px, 35%, 300px);
+    background-image:
+        linear-gradient(90deg, rgba(245, 240, 248, 0.2), rgba(245, 240, 248, 0.5)),
+        url('Images/CN top.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+#tiktok > * {
+    position: relative;
 }
 
 #tiktok h3 {
@@ -115,4 +209,27 @@ section {
     background-color: #002A5C;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 61, 130, 0.4);
+}
+
+@media (max-width: 600px) {
+    #tiktok {
+        align-items: center;
+        padding-left: 20px;
+        padding-top: min(75vw, 300px);
+    }
+
+    #tiktok::before {
+        bottom: auto;
+        width: 100%;
+        height: min(75vw, 300px);
+        background-position: center 20%;
+    }
+
+    #tiktok h3 {
+        padding-right: 0;
+    }
+
+    #tiktok p {
+        text-align: center;
+    }
 }
